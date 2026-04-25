@@ -1,41 +1,26 @@
 
-import kivy
-from kivy.uix.gridlayout import GridLayout
+
 from kivy.app import App
-from kivy.uix.label import Label
-from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget 
-from kivy.uix.textinput import TextInput
-from kivy.clock import Clock
-from kivy.uix.image import Image
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
-from kivy.core.window import Window
-from kivy.config import Config
-from kivy.lang import Builder
-from kivy.properties import StringProperty, ObjectProperty, NumericProperty, ReferenceListProperty
-from kivy.graphics.texture import Texture
 from kivy.graphics import *
 from kivy.utils import platform
-from jnius import autoclass, cast
+from jnius import autoclass
 
 
 class initialscreen(Widget):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-    def start_service(self, nm):
-        from android import mActivity
-        #print('Service started____ ', nm)
-        context =  mActivity.getApplicationContext()
-
-        SERVICE_NAME = str(context.getPackageName()) + '.Service' + nm
-
-        self.service_target = autoclass(SERVICE_NAME)
-
-        self.service_target.start(mActivity,'icon', 'logger', 'Connecting', '')
-
-        return self.service_target
+        
+    def start_my_service():
+        if platform == 'android':
+            from jnius import autoclass
+            # The package name is found in buildozer.spec (package.domain + package.name)
+            # Service name is 'Service' + 'Myservice' (first letter capitalized)
+            service = autoclass('org.testapp.testapp.ServiceMyservice')
+            mActivity = autoclass('org.kivy.android.PythonActivity').mActivity
+            service.start(mActivity, "")
      
 
     def stop_service(self, nm):

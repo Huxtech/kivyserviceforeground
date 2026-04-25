@@ -6,7 +6,7 @@ title = testapp
 package.name = testapp
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.testapppck
+package.domain = org.testapp
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -58,7 +58,8 @@ icon.filename = small_icon.png
 orientation = portrait
 
 # (list) List of service to declare
-services = Testservice:tservice.py:foreground
+# services = Testservice:tservice.py:foreground
+services = MyService:tservice.py:foreground
 
 #
 # OSX Specific

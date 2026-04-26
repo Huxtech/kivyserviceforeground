@@ -40,7 +40,7 @@ version = 0.1
 
 #requirements = python3,kivy,openrouteservice,kivymd,kivy_garden.mapview,requests,kivygradient,plyer,numpy,sqlite3,pickle-mixin,android,pyjnius
 
-requirements = python3,kivy,requests,pyjnius,https://github.com/kvdroid/Kvdroid/archive/refs/heads/master.zip
+requirements = python3,kivy,requests,pyjnius,android,https://github.com/kvdroid/Kvdroid/archive/refs/heads/master.zip, android-notify==1.60.10.dev0
 
 
 # (str) Custom source folders for requirements
@@ -58,8 +58,8 @@ icon.filename = small_icon.png
 orientation = portrait
 
 # (list) List of service to declare
-# services = Testservice:tservice.py:foreground
-services = MyService:tservice.py:foreground
+services = Testservice:tservice.py:foreground
+# services = MyService:tservice.py:foreground
 
 #
 # OSX Specific
@@ -100,7 +100,7 @@ icon.adaptive_foreground.filename = small_icon.png
 
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 for all the supported syntaxes and properties)
-android.permissions = INTERNET, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, FOREGROUND_SERVICE, SYSTEM_ALERT_WINDOW
+android.permissions = INTERNET, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, FOREGROUND_SERVICE, SYSTEM_ALERT_WINDOW, FOREGROUND_SERVICE_DATA_SYNC
 
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host
@@ -136,8 +136,6 @@ android.ndk = 25b
 # This can be useful to avoid excess Internet downloads or save time
 # when an update is due and you just want to test/build your package
 # android.skip_update = False
-android.accept_sdk_license = True
-android.skip_update = False
 
 # (bool) If True, then automatically accept SDK license
 # agreements. This is intended for automation only. If set to False,

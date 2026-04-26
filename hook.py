@@ -7,7 +7,7 @@ from pathlib import Path
 from pythonforandroid.toolchain import ToolchainCL
 
 def after_apk_build(toolchain: ToolchainCL):
-  manifest_file = Path(toolchain.\_dist.dist_dir) / "src" / "main" / "AndroidManifest.xml"
+  manifest_file = Path(toolchain._dist.dist_dir) / "src" / "main" / "AndroidManifest.xml"
   text = manifest_file.read_text(encoding="utf-8")
 
   # Change these three lines to fit your use-case 

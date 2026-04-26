@@ -340,7 +340,7 @@ p4a.branch = master
 #p4a.local_recipes =
 
 # (str) Filename to the hook for p4a
-p4a.hook =./hook.py
+#p4a.hook =
 
 # (str) Bootstrap to use for android builds
 # p4a.bootstrap = sdl2

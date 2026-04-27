@@ -1,5 +1,5 @@
 
-import kivy
+import kivy, json
 from kivy.uix.gridlayout import GridLayout
 from kivy.app import App
 from kivy.uix.label import Label
@@ -32,8 +32,14 @@ class initialscreen(Widget):
         SERVICE_NAME = str(context.getPackageName()) + '.Service' + nm
 
         self.service_target = autoclass(SERVICE_NAME)
+        
+        metadata = json.dumps({
+            "name": "Odudu otu",
+            "url": "https://example.com/file.zip",
+            "target": "downloads/file.zip"
+        })
 
-        self.service_target.start(mActivity, '')
+        self.service_target.start(mActivity, metadata)
 
         return self.service_target
      

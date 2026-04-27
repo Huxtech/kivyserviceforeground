@@ -4,7 +4,7 @@
 
 # ./services/mydownloader.py
 print("Entered Service File...")
-import time
+import time, os, json
 from jnius import autoclass
 from android_notify import Notification
 
@@ -18,8 +18,18 @@ service = PythonService.mService
 # foreground_type= ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC if BuildVersion.SDK_INT >= 30 else 0
 fmt = lambda s: f"{int(s//3600)}h {int((s%3600)//60)}m {int(s%60)}s"
 
+######################################
+# Retrieve the string passed in the .start() method
+arg = os.getenv('PYTHON_SERVICE_ARGUMENT')
 
-n=Notification(title="Foreground Service Active", message="This service is running in the foreground")
+if arg:
+    data = json.loads(arg)
+    name = data.get("name")
+    print(f"Service started. Downloading: {name}")
+#####################################################
+
+
+n=Notification(title="Foreground Service Active", message=f"This service is running in the foreground, started by {name if arg else 'unknown'}")
 builder=n.fill_args() # not using .send() allowing .startForeground() to send initial notification
 
 service.startForeground(n.id, builder.build())#, foreground_type)
